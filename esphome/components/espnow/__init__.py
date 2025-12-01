@@ -12,6 +12,8 @@ from esphome.const import (
     CONF_ON_ERROR,
     CONF_TRIGGER_ID,
     CONF_WIFI,
+    PLATFORM_ESP32,
+    PLATFORM_ESP8266,
 )
 from esphome.core import CORE, HexInt
 from esphome.types import ConfigType
@@ -94,7 +96,7 @@ CONFIG_SCHEMA = cv.All(
             ),
         },
     ).extend(cv.COMPONENT_SCHEMA),
-    cv.only_on_esp32,
+    cv.only_on([PLATFORM_ESP32, PLATFORM_ESP8266]),
 )
 
 
@@ -118,7 +120,7 @@ async def to_code(config):
     var = cg.new_Pvariable(config[CONF_ID])
     await cg.register_component(var, config)
 
-    if CORE.using_arduino:
+    if CORE.using_arduino and CORE.using_esp_idf:
         cg.add_library("WiFi", None)
 
     # ESP-NOW uses wake_loop_threadsafe() to wake the main loop from ESP-NOW callbacks
