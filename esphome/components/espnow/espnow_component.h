@@ -5,17 +5,19 @@
 
 #if defined(USE_ESP32) || defined(USE_ESP8266)
 
-#include "esphome/core/event_pool.h"
-#include "esphome/core/lock_free_queue.h"
 #include "espnow_packet.h"
 
 #ifdef USE_ESP32
 #include <esp_idf_version.h>
 #include <esp_mac.h>
 #include <esp_now.h>
+#include "esphome/core/event_pool.h"
+#include "esphome/core/lock_free_queue.h"
 #else  // ESP8266
 #include <espnow.h>
 #include "esp8266_dummy_types.h"
+#include "event_pool.h"
+#include "lock_free_queue.h"
 #endif
 
 #include <array>

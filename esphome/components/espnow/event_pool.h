@@ -1,11 +1,12 @@
+// dummy version of the ESP32 event pool
+// it uses a dummy version of lock_free_queue for the ESP8266
+
 #pragma once
 
-#if defined(USE_ESP32)
+#ifdef USE_ESP8266
 
-#include <atomic>
-#include <cstddef>
 #include "esphome/core/helpers.h"
-#include "esphome/core/lock_free_queue.h"
+#include "lock_free_queue.h"
 
 namespace esphome {
 
@@ -78,4 +79,4 @@ template<class T, uint8_t SIZE> class EventPool {
 
 }  // namespace esphome
 
-#endif  // defined(USE_ESP32)
+#endif  // USE_ESP8266
