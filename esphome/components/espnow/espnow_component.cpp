@@ -402,8 +402,10 @@ uint8_t ESPNowComponent::get_wifi_channel() {
 esp_err_t ESPNowComponent::send(const uint8_t *peer_address, const uint8_t *payload, size_t size,
                                 const send_callback_t &callback) {
 #else
-esp_err_t ESPNowComponent::send(uint8_t *peer_address, const uint8_t *payload, size_t size,
+esp_err_t ESPNowComponent::send(const uint8_t *peer_address_const, const uint8_t *payload, size_t size,
                                 const send_callback_t &callback) {
+  uint8_t peer_address[ESP_NOW_ETH_ALEN];
+  memcpy(peer_address, peer_address_const, ESP_NOW_ETH_ALEN);
 #endif
   if (this->state_ != ESPNOW_STATE_ENABLED) {
     return ESP_ERR_ESPNOW_NOT_INIT;

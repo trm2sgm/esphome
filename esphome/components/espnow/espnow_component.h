@@ -150,11 +150,12 @@ class ESPNowComponent : public Component {
   esp_err_t send(const uint8_t *peer_address, const uint8_t *payload, size_t size,
                  const send_callback_t &callback = nullptr);
 #else
-  esp_err_t send(uint8_t *peer_address, const std::vector<uint8_t> &payload,
+  esp_err_t send(const uint8_t *peer_address, const std::vector<uint8_t> &payload,
                  const send_callback_t &callback = nullptr) {
     return this->send(peer_address, payload.data(), payload.size(), callback);
   }
-  esp_err_t send(uint8_t *peer_address, const uint8_t *payload, size_t size, const send_callback_t &callback = nullptr);
+  esp_err_t send(const uint8_t *peer_address, const uint8_t *payload, size_t size,
+                 const send_callback_t &callback = nullptr);
 #endif
 
   void register_received_handler(ESPNowReceivedPacketHandler *handler) { this->received_handlers_.push_back(handler); }

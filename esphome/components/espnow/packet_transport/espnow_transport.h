@@ -2,7 +2,7 @@
 
 #include "../espnow_component.h"
 
-#ifdef USE_ESP32
+#if defined(USE_ESP32) || defined(USE_ESP8266)
 
 #include "esphome/core/component.h"
 #include "esphome/components/packet_transport/packet_transport.h"

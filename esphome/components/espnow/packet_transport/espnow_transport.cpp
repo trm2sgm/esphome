@@ -1,6 +1,6 @@
 #include "espnow_transport.h"
 
-#ifdef USE_ESP32
+#if defined(USE_ESP32) || defined(USE_ESP8266)
 
 #include "esphome/core/application.h"
 #include "esphome/core/log.h"
